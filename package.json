@@ -7,6 +7,7 @@
     "start": "lite-server --baseDir=\"public\"",
     "postinstall": "npm run setup",
     "setup": "node setup.js",
+    "format": "prettier --write \"**/*.js\"",
     "update-data:once": "node update.js --mode=once",
     "update-data:cont": "node update.js --mode=cont"
   },
@@ -19,6 +20,7 @@
     "uuid": "^8.1.0"
   },
   "devDependencies": {
-    "lite-server": "^2.5.3"
+    "lite-server": "^2.5.3",
+    "prettier": "^2.0.5"
   }
 }

@@ -8,7 +8,7 @@ const makeSymbol = (length) => {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
-}
+};
 
 const generateRandomItems = (totalItems) => {
   const sampleItems = [];
@@ -18,11 +18,11 @@ const generateRandomItems = (totalItems) => {
       symbol: makeSymbol(3),
       price: Math.round(Math.random() * 10000) / 100,
       change: Math.round(Math.random() * 1000) / 100,
-      changeDirection: Math.round() > 0.5 ? '+' : '-'
+      changeDirection: Math.round() > 0.5 ? '+' : '-',
     });
   }
   return sampleItems;
-}
+};
 
 const itemsToMake = 12;
 const sampleItems = generateRandomItems(itemsToMake);

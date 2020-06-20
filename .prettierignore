@@ -1,0 +1,8 @@
+# Add files here to ignore them from prettier formatting
+
+CHANGELOG.md
+/dist
+/coverage
+/node_modules
+/.vscode
+/.idea

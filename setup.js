@@ -1,11 +1,10 @@
 const client = require('./db.js');
 const sampleItems = require('./db/items');
 
-const databaseDefinition = { id: "stocksdb" };
-const collectionDefinition = { id: "stocks" };
+const databaseDefinition = { id: 'stocksdb' };
+const collectionDefinition = { id: 'stocks' };
 
-const setupAndSeedDatabase = async ()  => {
-
+const setupAndSeedDatabase = async () => {
   const { database: db } = await client.databases.createIfNotExists(databaseDefinition);
   console.log('Database created.');
 
@@ -19,6 +18,6 @@ const setupAndSeedDatabase = async ()  => {
   console.log('Seed data added.');
 };
 
-setupAndSeedDatabase().catch(err => {
+setupAndSeedDatabase().catch((err) => {
   console.error('Error setting up database:', err);
 });
