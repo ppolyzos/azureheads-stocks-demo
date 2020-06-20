@@ -41,21 +41,41 @@ const updateData = async ()  => {
   });  
 };
 
-const updateItem = async (container, itemId) => {
+
+const updateIntervals = async () => {
+  const { container } = await init();
+
   console.log('Read data from database.\n\n');
-  const doc = await container.item(itemId);
-
-  const { resource: existingStock } = await doc.read();
-
-  const updates = getStockChangeValues(existingStock);
-
-  Object.assign(existingStock, updates);
-
-  await doc.replace(existingStock);
-
-  console.log(`Data updated: ${JSON.stringify(existingStock)}`);
+  sampleItems.forEach(async ({ id }) => {
+    const randomTimeout = Math.round(Math.random() * 3000);
+    setInterval(async () => {
+      await updateItem(container, id);
+    }, randomTimeout);
+  });  
 }
 
-updateData().catch(err => {
+const updateItem = async (container, itemId) => {
+  
+  const doc = await container.item(itemId);
+
+  const { resource: item } = await doc.read();
+
+  const updates = getStockChangeValues(item);
+
+  Object.assign(item, updates);
+
+  await doc.replace(item);
+
+  console.log(`Data updated: ${JSON.stringify(item)}`);
+}
+
+const getArgv = (param) => {
+  const paramName = `--${param}=`;
+  return (process.argv.slice(2).find(c => c.startsWith(paramName)) || '')
+    .replace(paramName, '');
+}
+
+const mode = getArgv('mode') === 'once' ? updateData : updateIntervals;
+mode.call(this).catch(err => {
   console.error(err);
 });
