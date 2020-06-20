@@ -1,4 +1,5 @@
 const client = require('./db.js');
+const sampleItems = require('./db/items');
 
 const databaseDefinition = { id: "stocksdb" };
 const collectionDefinition = { id: "stocks" };
@@ -13,14 +14,13 @@ const getPriceChange = () => {
   const min = 100;
   const max = 999;
   const change = min + (Math.random() * (max - min));
-  const value = Math.round(change);
-  return parseFloat((value / 100).toFixed(2));
+  return parseFloat((change / 100).toFixed(2));
 }
 
 const getStockChangeValues = (existingStock) => {
   const isChangePositive = !(existingStock.changeDirection === '+');
   const change = getPriceChange();
-  let price = isChangePositive ? existingStock.price + change : existingStock.price - change;
+  let price = isChangePositive ? parseFloat(existingStock.price) + change : parseFloat(existingStock.price) - change;
   price = parseFloat(price.toFixed(2));
   return {
     "price": price,
@@ -29,13 +29,21 @@ const getStockChangeValues = (existingStock) => {
   };
 };
 
-const updateData = async ()  => {
 
+const updateData = async ()  => {
   const { container } = await init();
 
+  sampleItems.forEach(async ({ id }) => {
+    const randomTimeout = Math.round(Math.random() * 500);
+    setTimeout(async () => {
+      await updateItem(container, id);
+    }, randomTimeout);
+  });  
+};
+
+const updateItem = async (container, itemId) => {
   console.log('Read data from database.\n\n');
-  
-  const doc = await container.item('e0eb6e85-176d-4ce6-89ae-1f699aaa0bab');
+  const doc = await container.item(itemId);
 
   const { resource: existingStock } = await doc.read();
 
@@ -46,7 +54,7 @@ const updateData = async ()  => {
   await doc.replace(existingStock);
 
   console.log(`Data updated: ${JSON.stringify(existingStock)}`);
-};
+}
 
 updateData().catch(err => {
   console.error(err);
