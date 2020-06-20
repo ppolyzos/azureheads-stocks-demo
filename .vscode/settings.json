@@ -1,0 +1,14 @@
+{
+    "azureFunctions.preDeployTask": "func: extensions install",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "bin": true,
+        "obj": true,
+        "node_modules": true
+    },
+    "debug.internalConsoleOptions": "neverOpen"
+}
