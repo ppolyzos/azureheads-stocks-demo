@@ -37,7 +37,7 @@ const updateData = async ()  => {
   
   const doc = await container.item('e0eb6e85-176d-4ce6-89ae-1f699aaa0bab');
 
-  const { body: existingStock } = await doc.read();
+  const { resource: existingStock } = await doc.read();
 
   const updates = getStockChangeValues(existingStock);
 
