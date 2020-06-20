@@ -1,5 +1,5 @@
 const client = require('./db.js');
-const sampleItems = require('./db/items');
+const sampleItems = require('./db/sample-data');
 
 const databaseDefinition = { id: 'stocksdb' };
 const collectionDefinition = { id: 'stocks' };

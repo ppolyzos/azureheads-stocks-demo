@@ -1,5 +1,4 @@
 const client = require('./db.js');
-const sampleItems = require('./db/items');
 
 const databaseDefinition = { id: 'stocksdb' };
 const collectionDefinition = { id: 'stocks' };
@@ -29,23 +28,33 @@ const getStockChangeValues = (existingStock) => {
   };
 };
 
-const updateData = async () => {
+const fetchResources = async () => {
   const { container } = await init();
 
-  sampleItems.forEach(async ({ id }) => {
-    const randomTimeout = Math.round(Math.random() * 500);
+  const { resources: items } = await container.items
+    .query({
+      query: 'SELECT c.id from c',
+    })
+    .fetchAll();
+
+  return { container, items };
+};
+
+const updateOnce = async () => {
+  const { container, items } = await fetchResources();
+  items.forEach(async ({ id }) => {
+    const randomTimeout = Math.round(Math.random() * 2000);
     setTimeout(async () => {
       await updateItem(container, id);
     }, randomTimeout);
   });
 };
 
-const updateIntervals = async () => {
-  const { container } = await init();
+const updateContiously = async () => {
+  const { container, items } = await fetchResources();
 
-  console.log('Read data from database.\n\n');
-  sampleItems.forEach(async ({ id }) => {
-    const randomTimeout = Math.round(Math.random() * 3000);
+  items.forEach(async ({ id }) => {
+    const randomTimeout = Math.round(Math.random() * 10000);
     setInterval(async () => {
       await updateItem(container, id);
     }, randomTimeout);
@@ -71,7 +80,7 @@ const getArgv = (param) => {
   return (process.argv.slice(2).find((c) => c.startsWith(paramName)) || '').replace(paramName, '');
 };
 
-const mode = getArgv('mode') === 'once' ? updateData : updateIntervals;
+const mode = getArgv('mode') === 'once' ? updateOnce : updateContiously;
 mode.call(this).catch((err) => {
   console.error(err);
 });
