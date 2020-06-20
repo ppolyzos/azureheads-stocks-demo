@@ -8,6 +8,7 @@
     "postinstall": "npm run setup",
     "setup": "node setup.js",
     "format": "prettier --write \"**/*.js\"",
+    "lint-staged": "lint-staged",
     "update-data:once": "node update.js --mode=once",
     "update-data:cont": "node update.js --mode=cont"
   },
@@ -15,11 +16,25 @@
   "repository": {
     "url": "https://github.com/MicrosoftDocs/mslearn-advocates.azure-functions-and-signalr.git"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts}": [
+      "tslint",
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@azure/cosmos": "^3.7.2",
     "uuid": "^8.1.0"
   },
   "devDependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "lite-server": "^2.5.3",
     "prettier": "^2.0.5"
   }
