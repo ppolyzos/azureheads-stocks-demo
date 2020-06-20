@@ -1,47 +1,58 @@
 #app {
-    padding-top: 25px;
+  padding: 25px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .stock {
-    width: 200px;
-    border-radius: 3px;
-    padding: 10px;
-    border: solid 1px #eee;
-    text-align: center;
-    box-shadow: -1px 0px 2px 0px #eee;
-    -webkit-box-shadow: -1px 0px 2px 0px #eee;
-    -moz-box-shadow: -1px 0px 2px 0px #eee;
-    margin: 20px 20px 20px 0;
+  width: 200px;
+  border-radius: 3px;
+  padding: 10px;
+  border: solid 1px #eee;
+  text-align: center;
+  box-shadow: -1px 0px 2px 0px #eee;
+  -webkit-box-shadow: -1px 0px 2px 0px #eee;
+  -moz-box-shadow: -1px 0px 2px 0px #eee;
+  /* The important bit. This percentage decides your columns. The percent can be px. It just represents your minimum starting width. */
+  flex: 1 0 18%;
+  margin: 10px 10px 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .stock:hover {
-    border: solid 1px rgb(212, 212, 212);
+  border: solid 1px rgb(212, 212, 212);
 }
 
 .lead {
-    font-size: 1.5em;
-    font-weight: 400;
+  font-size: 1.5em;
+  font-weight: 400;
 }
 
 .is-up {
-    color: green;
-    font-weight: bold;
+  color: green;
+  font-weight: bold;
 }
 
 .is-down {
-    color: maroon;
-    font-weight: bold;
+  color: maroon;
+  font-weight: bold;
 }
 
 .change {
-    text-transform: uppercase;
-    color: #999;
-    font-size: .8em;
+  text-transform: uppercase;
+  color: #999;
+  font-size: .8em;
 }
 
 .fade-enter-active {
   transition: all 1.5s ease;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
