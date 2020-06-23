@@ -63,6 +63,8 @@ yarn start
 ## Step 4: Update data in your database
 To update prices for the records in your Cosmos DB you can run the following command.
 ```
-yarn update-data
+yarn update-data:once
+// or 
+yarn update-data:cont  // be aware it will consume a lot of RU
 ```
 
