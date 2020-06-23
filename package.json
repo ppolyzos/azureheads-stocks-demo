@@ -10,6 +10,7 @@
     "format": "prettier --write \"**/*.js\"",
     "lint-staged": "lint-staged",
     "build:azure": "npm install",
+    "deploy:azure": "func azure functionapp publish <azure_functions_app>",
     "update-data:once": "node update.js --mode=once",
     "update-data:cont": "node update.js --mode=cont"
   },
