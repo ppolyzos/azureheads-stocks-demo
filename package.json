@@ -11,7 +11,7 @@
     "format": "prettier --write \"**/*.js\"",
     "lint-staged": "lint-staged",
     "build:azure": "npm install",
-    "deploy:azure": "func azure functionapp publish azureheads-node",
+    "deploy:func:azure": "func azure functionapp publish <azure_functions_app> --script-root ./api",
     "update-data:once": "node ./db/update.js --mode=once",
     "update-data:cont": "node ./db/update.js --mode=cont"
   },
