@@ -1,5 +1,5 @@
 const LOCAL_BASE_URL = 'http://localhost:7071';
-const AZURE_BASE_URL = '<FUNCTION_APP_ENDPOINT>';
+const AZURE_BASE_URL = 'https://azureheads-node.azurewebsites.net';
 
 const getAPIBaseUrl = () => {
   const isLocal = /localhost/.test(window.location.href);
