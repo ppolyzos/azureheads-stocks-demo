@@ -2,17 +2,18 @@
   "name": "microsoft-learn-func-signalr-end",
   "description": "Enable automatic updates in a web application using Azure Functions and SignalR: Microsoft Learn Sample Application",
   "version": "1.0.0",
-  "main": "setup.js",
+  "main": "./db/setup.js",
   "scripts": {
     "start": "lite-server --baseDir=\"public\"",
+    "func:start": "func start --script-root ./api",
     "postinstall": "npm run setup",
-    "setup": "node setup.js",
+    "setup": "node ./db/setup.js",
     "format": "prettier --write \"**/*.js\"",
     "lint-staged": "lint-staged",
     "build:azure": "npm install",
-    "deploy:azure": "func azure functionapp publish <azure_functions_app>",
-    "update-data:once": "node update.js --mode=once",
-    "update-data:cont": "node update.js --mode=cont"
+    "deploy:azure": "func azure functionapp publish azureheads-node",
+    "update-data:once": "node ./db/update.js --mode=once",
+    "update-data:cont": "node ./db/update.js --mode=cont"
   },
   "license": "MIT",
   "repository": {

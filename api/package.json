@@ -1,0 +1,13 @@
+{
+  "name": "microsoft-learn-func-signalr-end",
+  "description": "Enable automatic updates in a web application using Azure Functions and SignalR: Microsoft Learn Sample Application",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "func start"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@azure/cosmos": "^3.7.2"
+  },
+  "devDependencies": {}
+}

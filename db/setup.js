@@ -1,17 +1,17 @@
 const client = require('./db.js');
-const sampleItems = require('./db/sample-data');
+const sampleItems = require('./sample-data');
 
 const databaseDefinition = { id: 'stocksdb' };
 const collectionDefinition = { id: 'stocks' };
 
-const setupAndSeedDatabase = async () => {
+const setupAndSeedDatabase = async() => {
   const { database: db } = await client.databases.createIfNotExists(databaseDefinition);
   console.log('Database created.');
 
   const { container } = await db.containers.createIfNotExists(collectionDefinition);
   console.log('Collection created.');
 
-  sampleItems.forEach(async (item) => {
+  sampleItems.forEach(async(item) => {
     await container.items.create(item);
   });
 
